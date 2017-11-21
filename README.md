@@ -2,7 +2,7 @@
 
 ## How To Use
 ```
-docker run -d -e PROJECT_ID=unique_id_on_gce -e GS_ID=gs_access_key_id -e GS_SECRET=gs_secret_access_key -e MONGO_HOST=127.0.0.1:27017 -e MONGO_DATABASE=database -e MONGO_END_DATABASE=destination-database -e BUCKET=storage-bucket -e CRON_TIME="0 0 * * *" dmapper/mongodb-restore-gce
+docker run -d -e PROJECT_ID=unique_id_on_gce -e GS_ID=gs_access_key_id -e GS_SECRET=gs_secret_access_key -e MONGO_HOST=127.0.0.1:27017 -e MONGO_DATABASE=database -e MONGO_END_DATABASE=destination-database -e BUCKET=storage-bucket -e CRON_TIME="0 1 * * *" dmapper/mongodb-restore-gce
 ```
 
 ## Environment Variables
