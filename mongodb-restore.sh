@@ -12,10 +12,10 @@ BUCKET_NAME="$BUCKET"
 BACKUP_PATH="/mnt/data/dump"
 
 # Get gce path to dumps
-GSE_LATEST_DUMP = `/root/gsutil/gsutil ls gs://$BUCKET_NAME/$DB_NAME | tail -1`
+GSE_LATEST_DUMP=`/root/gsutil/gsutil ls gs://$BUCKET_NAME/$DB_NAME | tail -1`
 
 # Copy the dump
-mkdir $BACKUP_PATH
+mkdir -p $BACKUP_PATH
 
 /root/gsutil/gsutil cp $GSE_LATEST_DUMP $BACKUP_PATH 2>&1 || exit
 
@@ -24,13 +24,13 @@ cd $BACKUP_PATH || exit
 
 BACKUP_FILE_NAME=`ls | tail -1`
 
-echo "Copied $BACKUP_FILE_NAME"
+echo "Copied $BACKUP_FILE_NAME"cd
 
 #unpuck
 tar -xvzf $BACKUP_FILE_NAME
 
 #restore
-mongorestore -h "$DB_HOST" -u "$DB_USER" -p "$DB_PASS" -d "$DB_NAME" --drop $DB_END_NAME
+mongorestore -h "$DB_HOST" -u "$DB_USER" -p "$DB_PASS" -d "$DB_END_NAME" --drop "$DB_NAME"
 
 echo "Restoring finished"
 
