@@ -24,7 +24,7 @@ cd $BACKUP_PATH || exit
 
 BACKUP_FILE_NAME=`ls | tail -1`
 
-echo "Copied $BACKUP_FILE_NAME"cd
+echo "Copied $BACKUP_FILE_NAME"
 
 #unpuck
 tar -xvzf $BACKUP_FILE_NAME
