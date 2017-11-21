@@ -38,4 +38,4 @@ Like before but for the password.
 The **cron time**, the frequency that will restore a new backup, default is `0 1 * * *` every day at 1am (GTM).
 Here is a good [cron generator](http://crontab-generator.org/).
 
-##### Thanks a lot to https://github.com/jadsonlourenco for docker-mongodb-backup-gce
+##### Thanks a lot to https://github.com/jadsonlourenco for [docker-mongodb-backup-gce](https://github.com/jadsonlourenco/docker-mongodb-backup-gce)
