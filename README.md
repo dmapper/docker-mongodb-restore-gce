@@ -1,4 +1,4 @@
-# Mongodb cron restoring from Google Cloud Storage (GCE)
+# Mongodb cron restore from Google Cloud Storage (GCE)
 
 ## How To Use
 ```
