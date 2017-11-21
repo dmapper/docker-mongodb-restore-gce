@@ -16,6 +16,7 @@ GSE_LATEST_DUMP = `/root/gsutil/gsutil ls gs://$BUCKET_NAME/$DB_NAME | tail -1`
 
 # Copy the dump
 mkdir $BACKUP_PATH
+
 /root/gsutil/gsutil cp $GSE_LATEST_DUMP $BACKUP_PATH 2>&1 || exit
 
 # Extract the backup
