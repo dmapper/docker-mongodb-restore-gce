@@ -13,11 +13,16 @@ BACKUP_PATH="/mnt/data/dump"
 
 # Get gce path to dumps
 GSE_LATEST_DUMP=`/root/gsutil/gsutil ls gs://$BUCKET_NAME/$DB_NAME | tail -1`
+echo "Got GSE path to a latest dump $GSE_LATEST_DUMP"
 
 # Copy the dump
 mkdir -p $BACKUP_PATH
 
+echo "Started copying from GSE"
+
 /root/gsutil/gsutil cp $GSE_LATEST_DUMP $BACKUP_PATH 2>&1 || exit
+
+echo "Finished copying from GSE successfully"
 
 # Extract the backup
 cd $BACKUP_PATH || exit
@@ -26,13 +31,25 @@ BACKUP_FILE_NAME=`ls | tail -1`
 
 echo "Copied $BACKUP_FILE_NAME"
 
-#unpuck
+# Unpacking
+echo "Unpacking $BACKUP_FILE_NAME"
+
 tar -xvzf $BACKUP_FILE_NAME
 
-#restore
-mongorestore -h "$DB_HOST" -u "$DB_USER" -p "$DB_PASS" -d "$DB_END_NAME" --drop "$DB_NAME"
+echo "Unpacked $BACKUP_FILE_NAME"
 
-echo "Restoring finished"
+#restore
+
+for DB in $DB_END_NAME
+do
+
+# Iteration start
+echo "Started restoring a database DB_HOST: $DB_HOST; DB_PASS:$DB_PASS; DB_END_NAME: $DB;"
+
+mongorestore -h "$DB_HOST" -u "$DB_USER" -p "$DB_PASS" -d "$DB" --drop "$DB_NAME"
+
+echo "Finished restoring"
+done
 
 rm -rf $BACKUP_PATH/*
 cd /
