@@ -26,7 +26,7 @@ The IP or domain of your Mongodb server, with the port (127.0.0.1:27017).
 Database name to restore
 
 #### MONGO_END_DATABASE
-Destination database name
+Destination database name or a list of databases (MONGO_END_DATABASE = "dn_name_1 dn_name_2 dn_name_3")
 
 #### MONGO_USER
 If your database need authentication, set the user of current database.
